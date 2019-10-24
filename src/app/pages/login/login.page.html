@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login do Usuário</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #fc (ngSubmit)="onsubmit(fc)">
+    <ion-item>
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input type="email" [(ngModel)]="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        #e="ngModel"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="e.invalid && e.dirty">E-mail invalido!</ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" name="senha" [(ngModel)]="senha"></ion-input>
+    </ion-item>
+
+    <section>
+      <ion-button type="submit" expand="block">Entrar</ion-button>
+      <ion-button type="reset" expand="block" color="danger">Cancelar</ion-button>
+    </section>
+  </form>
+</ion-content>
+
+<ion-content>
+  <section>
+    <ion-button expand="block" fill="outline" (click)="loginWEB()">Entrar com Google</ion-button>
+  </section>
+
+  <section>
+    <ion-button expand="block" color="danger" (click)="logout()">Sair</ion-button>
+  </section>
+</ion-content>

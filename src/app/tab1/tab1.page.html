@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title slot="start">
+      Inicio
+    </ion-title>
+    <ion-title slot="end">
+      <ion-icon name="person" routerLink="/login"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="entregas">
+    <ion-card *ngFor="let entrega of entregas" [routerLink]="['/tabs/perfilEntrega/',entrega.key]">
+      <!-- <img src="/assets/shapes.svg" alt="" /> -->
+      <ion-card-header>
+        <ion-card-subtitle>{{entrega.peso}}</ion-card-subtitle>
+        <ion-card-title>{{entrega.produto}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{entrega.descricao}}.</p>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

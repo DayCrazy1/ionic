@@ -1,0 +1,7 @@
+{
+  "name": "entregaTudo",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Lista de Entregas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" routerLink="/tabs/addEntrega">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="entregas | async as entrs">
+    <ion-item-sliding *ngFor="let e of entrs">
+      <ion-item-options side="start">
+        <ion-item-option color="" (click)="editar(e.key)">
+          Atualizar
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item [routerLink]="['/tabs/perfilEntrega/',e.key]">
+        <ion-avatar slot="start">
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-avatar>
+        <ion-label>
+          {{e.produto}} - {{e.peso}} - {{e.valor | currency:"BRL"}}
+        </ion-label>
+        <ion-note>{{e.key}}</ion-note>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="remover(e.key)">
+          Delete
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+</ion-content>

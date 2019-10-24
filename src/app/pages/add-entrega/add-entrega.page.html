@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Casdatro entrega</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none">
+    <img src="assets/box.jpg" (click)="tirarFoto()" *ngIf="!preview">
+    <img [src]="preview[preview.length-1]" (click)="tirarFoto()" *ngIf="preview">
+  </ion-item>
+
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide *ngFor="let p of preview ; let i = index">
+      <img src="{{p}}" (click)="removerFoto(i)">
+    </ion-slide>
+  </ion-slides>
+
+  <form #fc="ngForm" (ngSubmit)="onsubmit(fc)">
+    <ion-item>
+      <ion-label position="floating">Produto</ion-label>
+      <ion-input type="text" [(ngModel)]="entrega.produto" name="produto" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descrição</ion-label>
+      <ion-input type="text" [(ngModel)]="entrega.descricao" name="descricao" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Peso</ion-label>
+      <ion-input type="number" [(ngModel)]="entrega.peso" name="peso" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Largura</ion-label>
+      <ion-input type="number" [(ngModel)]="entrega.largura" name="largura" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Comprimento</ion-label>
+      <ion-input type="number" [(ngModel)]="entrega.comprimento" name="comprimento" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Altura</ion-label>
+      <ion-input type="number" [(ngModel)]="entrega.altura" name="altura" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Quantidade</ion-label>
+      <ion-input type="number" [(ngModel)]="entrega.quant" name="quant" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Valor</ion-label>
+      <ion-input type="number" [(ngModel)]="entrega.valor" name="valor" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-button type="submit" [disabled]="fc.invalid">Salvar</ion-button>
+      <ion-button type="reset" color="danger" [routerLink]="['/']">Cancelar</ion-button>
+    </ion-item>
+  </form>
+</ion-content>
